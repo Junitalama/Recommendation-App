@@ -16,4 +16,10 @@ const db = new Pool({
 });
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  
+  res.send({ express: "Your Backend Service is Running" });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
