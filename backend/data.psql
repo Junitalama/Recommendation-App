@@ -1,13 +1,7 @@
 CREATE TABLE recommendation (
 rec_id SERIAL PRIMARY KEY,
 title varchar NOT NULL,
-description VARCHAR NOT NULL,
-cat_id INT REFERENCES categories(cat_id) NOT NULL
-);
-
-CREATE TABLE categories(
-    cat_id SERIAL PRIMARY key,
-    type VARCHAR NOT NULL
+category VARCHAR NOT NULL
 );
 
 CREATE TABLE moods(
@@ -26,3 +20,5 @@ rec_id INT REFERENCES recommendation(rec_id) NOT NULL,
 user_id INT REFERENCES users(user_id) NOT NULL,
 mood_id INT REFERENCES moods(mood_id) NOT NULL
 );
+
+select * from recommendation_cross join recommendation on(recommendation_cross.id = recommendation.rec_id) join users on (recommendation_cross.id = users.user_id) join moods on (recommendation_cross.id = moods.mood_id);
