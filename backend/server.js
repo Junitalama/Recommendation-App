@@ -17,9 +17,9 @@ const db = new Pool({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  
-  res.send({ express: "Your Backend Service is Running" });
+  db.query("select * from recommendation")
+    .then((result) => res.json(result.rows))
+    .catch((err) => res.send(err));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
